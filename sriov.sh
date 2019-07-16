@@ -1,4 +1,4 @@
-echo "clone  https://github.com/openshift/cluster-node-tuning-operator github link via git clone https://github.com/openshift/cluster-node-tuning-operator"
+echo "clone  https://github.com/openshift/sriov-network-operator github link via git clone https://github.com/openshift/sriov-network-operator"
 sleep 2
 echo "After cloning is done  go to cluster-node-tuning-operator directory and run this sriov.sh script"
 sleep 5
