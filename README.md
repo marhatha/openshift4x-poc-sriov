@@ -1,6 +1,6 @@
 # openshift4x-poc-sriov
 
-This is a reference script to modify the sriov-network-operator to adapt as per the dosconnected Openshift envoirnment .
+This is a reference script to modify the sriov-network-operator as per your disconnected Openshift envoirnment .
 In this script user will first clone the following github repo https://github.com/openshift/sriov-network-operator and adapt the variables listed in the script as per thier envoirnment.
 
 In order to clone the github you can run the script as follows:
