@@ -67,7 +67,7 @@ skopeo copy --authfile=${AUTH_JSON_FILE} docker://${UPSTREAM_REPO}/openshift/ori
 
 }
 
-modify_file() {
+modify_files() {
 
 sed -e 's|${UPSTREAM_REPO}/openshift/origin-sriov-network-operator|${AIRGAP_REG}/origin-sriov-network-operator|g' < ./deploy/operator.yaml > test.yaml
 sed -e 's|${UPSTREAM_REPO}/openshift/origin-sriov-cni:4.2.0|${AIRGAP_REG}/openshift/origin-sriov-cni:4.2.0|g' < test.yaml  > test1.yaml
