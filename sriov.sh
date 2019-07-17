@@ -130,14 +130,13 @@ echo "DONE DONE DONE"
 }
 
 
-mirror () {
-}
-
-
 clone () {
 git cone https://github.com/openshift/sriov-network-operator
 cd sriov-network-operator
 }
+
+
+
 
 
 # Capture First param
