@@ -2,7 +2,8 @@ echo "clone this github link https://github.com/openshift/sriov-network-operator
 sleep 2
 echo "After cloning is done  go to sriov-network-operator directory  and run this sriov.sh script"
 sleep 5
-
+echo "make sure you copy your pull secret file in sriov-network-operator directory"
+sleep 5
 
 ##############################################################
 # UPDATE TO MATCH YOUR ENVIRONMENT
@@ -18,7 +19,7 @@ OCP_RELEASE=4.1.4
 
 #LAST_3_OCP_RELEASES=$(curl -s https://quay.io/api/v1/repository/${UPSTREAM_REPO}/ocp-release/tag/\?limit=3\&page=1\&onlyActiveTags=true | jq -r '.tags[].name')
 
-AIRGAP_REG='registry.ocp4poc.example.com:5000'
+AIRGAP_REG='test.example.com:5000'
 AIRGAP_REPO='ocp4/openshift4'
 UPSTREAM_REPO='quay.io'   ## or 'openshift'
 AIRGAP_SECRET_JSON='pull-secret-2.json'
@@ -49,20 +50,20 @@ get_sriov_images() {
 
 mirror() {
 
-skopeo copy --authfile=${AUTH_JSON_FILE} ${UPSTREAM_REPO}/openshift/origin-sriov-network-device-plugin:4.2.0 \
-        ${AIRGAP_REG}/${AIRGAP_REPO}:${OCP_RELEASE}
+skopeo copy --authfile=${AUTH_JSON_FILE} docker://${UPSTREAM_REPO}/openshift/origin-sriov-network-device-plugin:4.2.0 \
+        docker://${AIRGAP_REG}/${AIRGAP_REPO}:${OCP_RELEASE}
 
-skopeo copy --authfile=${AUTH_JSON_FILE} ${UPSTREAM_REPO}/openshift/origin-sriov-dp-admission-controller:4.2.0 \
-        ${AIRGAP_REG}/${AIRGAP_REPO}:${OCP_RELEASE}
+skopeo copy --authfile=${AUTH_JSON_FILE} docker://${UPSTREAM_REPO}/openshift/origin-sriov-dp-admission-controller:4.2.0 \
+        docker://${AIRGAP_REG}/${AIRGAP_REPO}:${OCP_RELEASE}
 
-skopeo copy --authfile=${AUTH_JSON_FILE} ${UPSTREAM_REPO}/openshift/origin-sriov-network-operator \
-        ${AIRGAP_REG}/${AIRGAP_REPO}:${OCP_RELEASE}
+skopeo copy --authfile=${AUTH_JSON_FILE} docker://${UPSTREAM_REPO}/openshift/origin-sriov-network-operator \
+        docker://${AIRGAP_REG}/${AIRGAP_REPO}:${OCP_RELEASE}
 
-skopeo copy --authfile=${AUTH_JSON_FILE} ${UPSTREAM_REPO}/openshift/origin-sriov-network-operator \
-        ${AIRGAP_REG}/${AIRGAP_REPO}:${OCP_RELEASE}
+skopeo copy --authfile=${AUTH_JSON_FILE} docker://${UPSTREAM_REPO}/openshift/origin-sriov-network-operator \
+        docker://${AIRGAP_REG}/${AIRGAP_REPO}:${OCP_RELEASE}
 
-skopeo copy --authfile=${AUTH_JSON_FILE} ${UPSTREAM_REPO}/openshift/origin-sriov-cni:4.2.0 \
-        ${AIRGAP_REG}/${AIRGAP_REPO}:${OCP_RELEASE}
+skopeo copy --authfile=${AUTH_JSON_FILE} docker://${UPSTREAM_REPO}/openshift/origin-sriov-cni:4.2.0 \
+        docker://${AIRGAP_REG}/${AIRGAP_REPO}:${OCP_RELEASE}
 
 }
 
